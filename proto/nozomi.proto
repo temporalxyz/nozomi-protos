@@ -24,7 +24,7 @@ message SendOptions {
 enum SendingMode {
     FASTEST = 0;
     FRONT_RUNNING_PROTECTION = 1;
-    REVERT_PROTECT = 2;
+    REVERT_PROTECTION = 2;
 }
 
 message SendTransactionResponse {
