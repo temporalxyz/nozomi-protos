@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package nozomi;
+
+service Nozomi {
+    rpc SendTransaction (SendTransactionRequest) returns (SendTransactionResponse);
+    rpc SendBundle (SendBundleRequest) returns (SendBundleResponse);
+}
+
+message SendTransactionRequest {
+    bytes transaction = 1;
+    optional SendOptions options = 2;
+}
+
+message SendBundleRequest {
+    repeated bytes transactions = 1;
+    optional SendOptions options = 2;
+}
+
+message SendOptions {
+    SendingMode mode = 1;
+}
+
+enum SendingMode {
+    FASTEST = 0;
+    FRONT_RUNNING_PROTECTION = 1;
+    REVERT_PROTECT = 2;
+}
+
+message SendTransactionResponse {
+    Status status = 1;
+}
+
+message SendBundleResponse {
+    Status status = 1;
+}
+
+enum Status {
+    SUCCESS = 0;
+}
